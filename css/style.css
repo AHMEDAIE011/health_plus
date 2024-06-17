@@ -1,0 +1,1906 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+
+::selection {
+  background: #b9adef;
+  /* تحديد العناصر */
+}
+
+::-webkit-scrollbar {
+  background-color: #4b4e55c2;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2086c9;
+  border-radius: 6px;
+}
+
+/* Start Nav */
+
+#en {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(15, 206, 223);
+  height: 47px;
+  border: none;
+}
+
+#en,
+:focus {
+  outline: none;
+  border: none;
+}
+
+.dropdown-menu {
+  background-color: #2222229c;
+  border: 1px solid #fff;
+}
+
+
+
+
+header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  /* padding: 0 0; */
+}
+
+.navbar .links .nav-item .nav-link ul .dropdown-menu .dropdown-item .active {
+  color: rgb(0, 0, 0);
+}
+
+.dropdown-item.active {
+  background-color: #ffffff;
+}
+
+.navbar .links .active {
+  color: rgb(252, 126, 0);
+}
+
+.navbar {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  background-color: #252a7470;
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  max-width: 1150px;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+.navbar .hamburger-btn {
+  display: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.navbar .logo {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar .logo img {
+  width: 60px;
+  border-radius: 40%;
+}
+
+.navbar .logo h2 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.navbar .links {
+  /* margin-right: 430px; */
+  display: flex;
+  gap: 35px;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.navbar .links a {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.1s ease;
+}
+
+.navbar .links a:hover {
+  color: #0026ff;
+}
+
+
+
+/* End Nav */
+/* ............................................. */
+.search {
+  position: relative;
+  height: 35px;
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  margin: 0 400px;
+  border-radius: 9px;
+  box-shadow: 0 5px 10px #0000001a;
+}
+
+.search i,
+.search .button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search i {
+  left: 20px;
+  font-size: 30px;
+  color: #707070;
+}
+
+.search input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  padding: 0 155px 0 65px;
+  background-color: transparent;
+}
+
+.search .button {
+  right: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  border: none;
+  padding: 11px 30px;
+  border-radius: 6px;
+  background-color: #4070f4;
+  margin-right: -20px;
+}
+
+/* ............................................. */
+
+/* .........................start login..................... */
+
+
+
+.home::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #000000d0;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-out;
+}
+
+.home.show::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* From */
+.form_container {
+  position: fixed;
+  max-width: 350px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 101;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease-out;
+  /* height: 410px; */
+}
+
+.home.show .form_container {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.signup_form {
+  display: none;
+}
+
+.form_container.active .signup_form {
+  display: block;
+}
+
+.form_container.active .login_form {
+  display: none;
+}
+
+.form_close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #0b0217;
+  font-size: 22px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.form_container h2 {
+  font-size: 22px;
+  color: #0b0217;
+  text-align: center;
+}
+
+.input_box {
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  height: 40px;
+}
+
+.input_box input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0 30px;
+  color: #333;
+  transition: all 0.2s ease;
+  border-bottom: 1.5px solid #aaaaaa;
+}
+
+.input_box input:focus {
+  border-color: #7d2ae8;
+}
+
+.input_box i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #707070;
+}
+
+.input_box i.email,
+.input_box i.password {
+  left: 0;
+}
+
+.input_box input:focus~i.email,
+.input_box input:focus~i.password {
+  color: #7d2ae8;
+}
+
+.input_box i.pw_hide {
+  right: 0;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.option_field {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form_container a {
+  color: #472ae8;
+  font-size: 12px;
+}
+
+.form_container a:hover {
+  text-decoration: underline;
+}
+
+.checkbox {
+  display: flex;
+  column-gap: 8px;
+  white-space: nowrap;
+}
+
+.checkbox input {
+  accent-color: #2a2de8;
+}
+
+.checkbox label {
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  color: #170202;
+}
+
+.form_container .button {
+  background: #0611b3;
+  margin-top: 30px;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.login_signup {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.button1 {
+  background: transparent;
+  color: #fff;
+  border: none;
+
+}
+
+
+/* .........................end login...00000000000000000...... */
+
+
+
+
+
+
+
+
+
+
+
+start Product img {
+  width: 100%;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+.product-img img {
+  transition: transform 0.7s ease;
+}
+
+.product:hover .product-img img {
+  transform: scale(1.1);
+}
+
+.product:hover .product-img {
+  background: #ff0000;
+}
+
+.product:hover .product-btns {
+  opacity: 1;
+}
+
+
+/* product collection */
+.product-collection {
+  padding: 3.2rem 0;
+}
+
+.product-collection-wrapper {
+  padding: 3.2rem 0;
+}
+
+.product-col-left {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url("/images/profile.png") center/cover no-repeat;
+}
+
+.product-col-r-top {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url("images/fashion-img-2.png") center/cover no-repeat;
+}
+
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 50vh;
+  padding: 2rem 1.5rem 3.2rem;
+  margin: 5px;
+}
+
+.product-col-r-bottom>div:first-child {
+  background: #eaa001;
+}
+
+.product-col-r-bottom>div:last-child {
+  background: #0090ff;
+}
+
+.product-col-content {
+  text-align: center;
+  color: white;
+}
+
+.product-collection .text-light {
+  opacity: 1;
+  font-size: 0.8;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.btn-dark {
+  background: black;
+  color: white;
+  outline: 0;
+  border-radius: 25px;
+  padding: 0.7rem 1rem;
+  border: 0;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.btn-dark:hover {
+  background: var(--carribean-green);
+}
+
+
+
+
+/* Media Queries */
+@media screen and (min-width: 992px) {
+  .product-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-col-r-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .product-items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .products .text-light {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1336px) {
+  .product-items {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-collection-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flex {
+    height: 60vh;
+  }
+
+  .product-col-left {
+    height: 121.5vh;
+  }
+}
+
+/*  end Product */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ..................... Start Contact......................... */
+
+
+
+.Contact_Us {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* max-width: 900px; */
+  width: 100%;
+  background: #0a233a83;
+  border-radius: 6px;
+  padding: 50px 0px 100px;
+  box-shadow: 0 5px 10px #001aff33;
+}
+
+.Contact_Us .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Contact_Us .content .left-side {
+  width: 15%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  position: relative;
+}
+
+.content .left-side::before {
+  content: "";
+  position: absolute;
+  height: 75%;
+  width: 3px;
+  right: -22px;
+  top: 45%;
+  transform: translateY(-50%);
+  background: #3e2093;
+}
+
+.content .left-side .details {
+  margin: 14px;
+  text-align: center;
+}
+
+.content .left-side .details i {
+  font-size: 30px;
+  color: #3e2093;
+  margin-bottom: 10px;
+}
+
+.content .left-side .details .topic {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 15px;
+
+}
+
+.content .left-side .details .text-one,
+.content .left-side .details .text-two {
+  font-size: 12px;
+  color: #d8d6d6;
+  margin-bottom: 10px;
+
+}
+
+.Contact_Us .content .right-side {
+  width: 100%;
+  margin-left: 75px;
+}
+
+.content .right-side .topic-text {
+  font-size: 23px;
+  font-weight: 600;
+  color: #efeff1;
+  margin-left: 60px;
+}
+
+.right-side .input-box {
+  height: 55px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.right-side .input-box input,
+.right-side .input-box textarea {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #f0f1f8;
+  border-radius: 6px;
+  padding: 0 25px;
+  resize: none;
+}
+
+.right-side .message-box {
+  min-height: 110px;
+}
+
+.right-side .input-box textarea {
+  padding-top: 6px;
+}
+
+.right-side .button {
+  display: inline-block;
+  /* margin-top: 7px; */
+}
+
+.right-side .button input[type="button"] {
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #1f036d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button input[type="button"]:hover {
+  background: #298dbc;
+}
+
+@media (max-width: 950px) {
+  .Contact_Us {
+    width: 100%;
+    padding: 30px 40px 40px 35px;
+  }
+
+  .Contact_Us .content .right-side {
+    width: 75%;
+    margin-left: 55px;
+  }
+}
+
+@media (max-width: 820px) {
+  .Contact_Us {
+    margin: 40px 0;
+    height: 100%;
+  }
+
+  .Contact_Us .content {
+    flex-direction: column-reverse;
+  }
+
+  .Contact_Us .content .left-side {
+    width: 100%;
+    flex-direction: row;
+    margin-top: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .Contact_Us .content .left-side::before {
+    display: none;
+  }
+
+  .Contact_Us .content .right-side {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ..................... end Contact......................... */
+
+/* Start Product */
+
+.pro1 {
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  /* margin: 50px 0; */
+  /* margin-top: 130px; */
+}
+
+.pro2 {
+  width: 22%;
+  margin: 18px;
+  box-sizing: border-box;
+  float: left;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  padding-top: 60px;
+  box-shadow: 0 14px 28px #1100ff40, 0 10px 10px #00d9ff38;
+  transition: .6s;
+  background: #f2f2f2;
+
+}
+
+.pro2:hover {
+  box-shadow: 0 3px 6px #0400ff29, 0 3px 6px #008cff3b;
+  transform: translate(1px, -20px);
+}
+
+.pro1 .pro2 img {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+.fa {
+  font-size: 26px;
+  transition: .4s;
+}
+
+.checked {
+  color: #ff9f43;
+}
+
+.fa:hover {
+  transform: scale(1.9);
+  transition: .16s;
+}
+
+.Buy-4,
+.Buy-1,
+.Buy-2,
+.Buy-3 {
+  text-align: center;
+  font-size: 24px;
+  color: #ffffff;
+  border: 0;
+  outline: none;
+  width: 100%;
+  padding: 20px;
+  cursor: pointer;
+  margin-top: 5px;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.Buy-4,
+.Buy-1,
+.Buy-2,
+.Buy-3 {
+  background: #2d0000;
+}
+
+/* End Product */
+/* Start Medai */
+
+
+@media(max-width:1000px) {
+  .pro2 {
+    width: 45%;
+  }
+}
+
+@media(max-width:750px) {
+  .pro2 {
+    width: 100%;
+  }
+
+}
+
+/* end mefai */
+
+
+/* start Footer  */
+footer .call-us {
+  position: absolute;
+  margin-left: 10px;
+}
+
+.site-footer {
+  background-color: #0B1215;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #ffffff;
+  bottom: 0;
+  left: 0;
+  float: bottom;
+  width: 100%;
+  text-align: justify;
+}
+
+.container .copyright-text {
+  margin-top: 10px;
+}
+
+.container .copyright-text .call-us {
+  margin-top: -10px;
+}
+
+.container .copyright-text a {
+  text-decoration: none;
+}
+
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
+}
+
+.site-footer h6 {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.site-footer .footer-links {
+  text-align: center;
+}
+
+.site-footer a {
+  color: #737373;
+}
+
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer-links a {
+  color: #737373
+}
+
+.footer-links a:active,
+.footer-links a:hover {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+.social-icons {
+  text-align: right;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-bottom: 4px
+}
+
+.social-icons a {
+  color: #818a91;
+  font-size: 30px;
+  display: block;
+  text-align: center;
+  border-radius: 100%;
+  padding-top: 5px;
+  width: 40px;
+  height: 40px;
+  margin-left: 6px;
+  margin-right: 8px;
+  background-color: #33353d;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.social-icons a:active,
+.social-icons a:hover {
+  color: #fff;
+  background-color: #29aafe;
+}
+
+.social-icons a.facebook:hover {
+  background-color: #3b5998;
+}
+
+.social-icons a.twitter:hover {
+  background-color: #00aced;
+}
+
+.social-icons a.instagram:hover {
+  background-color: rgba(145, 41, 41, 0.815);
+}
+
+/* :End Footer  */
+
+
+
+
+
+
+/* Start Payment */
+
+section_123 {
+  /* width: 100vw; */
+  min-height: 90vh;
+  /* font-size: 1.2rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.df3 {
+
+  background: white;
+  max-width: 900px;
+  min-height: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.5rem 1.5rem;
+}
+
+.left {
+  flex-basis: 50%;
+}
+
+.right {
+  flex-basis: 50%;
+}
+
+form {
+  padding: 1rem;
+}
+
+h3 {
+  margin-top: 1rem;
+  color: #2c3e50;
+}
+
+form input[type="text"] {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  margin: 0.5rem 0;
+  outline: none;
+}
+
+#zip {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+#zip select {
+  padding: 0.5rem 0.7rem;
+}
+
+#zip input[type="number"] {
+  padding: 0.5rem 0.7rem;
+  margin-left: 5px;
+}
+
+input[type="submit"] {
+  width: 80%;
+  padding: 0.5rem 1.5rem;
+  background: #2086c9;
+  color: white;
+  border: none;
+  outline: none;
+  margin-top: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+
+  margin-left: 30px;
+}
+
+input[type="submit"]:hover {
+  background: #2c3e50;
+}
+
+
+@media only screen and (max-width: 770px) {
+  .df3 {
+    flex-direction: column;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+
+
+
+/* End Payment  */
+
+
+
+
+
+
+
+/* ------------------------------------ */
+/* About Us start */
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  max-width: 1250px;
+  margin: 110px 100px;
+  padding: 20px;
+  gap: 40px;
+  text-justify: distribute;
+}
+
+.card-list .card-item {
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 10px #0d7bc591;
+  list-style: none;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: border 0.5s ease;
+}
+
+.card-list .card-item:hover {
+  border: 2px solid #000;
+}
+
+.card-list .card-item img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.card-list span {
+  display: inline-block;
+  background: #F7DFF5;
+  margin-top: 32px;
+  padding: 8px 15px;
+  font-size: 0.75rem;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.card-list .developer {
+  background-color: #F7DFF5;
+  color: #B22485;
+}
+
+.card-list .designer {
+  background-color: #d1e8ff;
+  color: #2968a8;
+}
+
+.card-list .editor {
+  background-color: #d6f8d6;
+  color: #205c20;
+}
+
+.card-item h3 {
+
+  color: #000;
+  font-size: 1.438rem;
+  margin-top: 28px;
+  font-weight: 600;
+}
+
+.card-item .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-35deg);
+  height: 40px;
+  width: 40px;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin-top: 40px;
+  transition: 0.2s ease;
+}
+
+/* About Us end */
+
+
+/* بداية صفحة نسيت كلمة المرور   */
+.Forgot-password1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 150px;
+  margin-left: 440px;
+}
+
+.Forgot-password {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.Forgot-password h4 {
+  color: #18b4f2;
+  font-size: 30px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+form1 {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px #0000001a,
+    0 8px 16px #0000001a;
+  max-width: 450px;
+  width: 100%;
+}
+
+form1 input {
+  height: 55px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  padding: 0 14px;
+}
+
+form1 input:focus {
+  outline: none;
+  border-color: #1877f2;
+}
+
+::placeholder {
+  color: #777;
+  font-size: 1.063rem;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+}
+
+.link .Search1 {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #1877f2;
+  padding: 10px 0;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.link .Search1:hover {
+  background: #0d65d9;
+}
+
+form a {
+  text-decoration: none;
+}
+
+.link .forgot {
+  color: #1877f2;
+  font-size: 0.875rem;
+}
+
+.link .forgot:hover {
+  text-decoration: underline;
+}
+
+
+/* نهاية صفحة نسيت كلمة المرور   */
+
+
+
+/* بداية سعيد ومحمد علي */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* 123 */
+  font-family: 'poppins', sans-serif;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  /* 123 */
+  min-height: 10vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+
+/* ------------------------------------سعيد محمد -------------------------------------- */
+
+
+/* ملكش دعوه بالاثنين الي فوق  دول
+دول بس عشان اخليهم في النص
+ */
+
+
+/* الوان الدواير  */
+
+:root {
+  --gap: -300px;
+  --circle-size: 200px;
+  --circle-size-small: 130px;
+  --color-1: #ff0000;
+  --color-2: #ffff00;
+  --color-3: #11ff00;
+  --color-4: #009dff;
+  --color-5: #ea00ff;
+}
+
+
+/* حجم العنصر كا كل  */
+
+.graphic-container {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  margin: 100px 0;
+  /* background-color: #00BCD4; */
+}
+
+.center-circles-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+
+/*  الدواير المفرغه  */
+
+.single {
+  gap: 20px;
+}
+
+
+/*  الدواير المصمطه  */
+
+.double {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.double:nth-child(even) {
+  flex-direction: column-reverse;
+}
+
+
+/* بنفرغ الدواير المفرغه بدايره تانيه بلون الخلفيه  */
+
+.circle {
+  width: var(--circle-size);
+  height: var(--circle-size);
+  background: #01022d;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+
+/* القلب الي في اول عنصر  */
+
+.icon i {
+  font-size: 3rem;
+  color: rgba(255, 0, 0, 0.854);
+}
+
+.content-container {
+  position: absolute;
+  max-width: 200px;
+  min-width: 200px;
+  width: 100%;
+}
+
+
+/* الكلام الصغير  */
+
+.content p {
+  font-size: 12.5px;
+  color: #ffffff;
+}
+
+.content-container h2 {
+  position: relative;
+  padding: 0 10px;
+}
+
+
+/* الاسهم */
+
+.one .content-container h2::before,
+.one .content-container h2::after,
+.two .content-container h2::before,
+.two .content-container h2::after,
+.five .content-container h2::before,
+.five .content-container h2::after {
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: 22px;
+  background: teal;
+  left: -6px;
+}
+
+.one .content-container h2::before,
+.two .content-container h2::before,
+.five .content-container h2::before {
+  top: -2px;
+  transform: rotate(30deg);
+}
+
+.one .content-container h2::after,
+.two .content-container h2::after,
+.five .content-container h2::after {
+  bottom: -2px;
+  transform: rotate(-30deg);
+}
+
+.three .content-container h2::before,
+.three .content-container h2::after,
+.four .content-container h2::before,
+.four .content-container h2::after {
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: 22px;
+  background: teal;
+  /*   ============================================    */
+  right: -6px;
+}
+
+.three .content-container h2::before,
+.four .content-container h2::before {
+  top: -2px;
+  transform: rotate(-30deg);
+}
+
+.three .content-container h2::after,
+.four .content-container h2::after {
+  bottom: -2px;
+  transform: rotate(30deg);
+}
+
+
+/* تنسيق الدواير المصمطه */
+
+.two,
+.four {
+  width: var(--circle-size-small);
+  height: var(--circle-size-small);
+}
+
+.two i,
+.four i {
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+
+/* الاسهم من الدواير للكلام */
+
+.one .content-container {
+  left: 0;
+  bottom: var(--gap);
+  text-align: left;
+  color: red;
+}
+
+.two .content-container {
+  left: 80px;
+  bottom: var(--gap);
+  text-align: left;
+  color: rgb(255, 234, 0);
+}
+
+.three .content-container {
+  right: 200px;
+  top: var(--gap);
+  text-align: right;
+  color: rgb(55, 255, 0);
+}
+
+.four .content-container {
+  right: 20px;
+  top: var(--gap);
+  text-align: right;
+  color: rgb(0, 170, 255);
+}
+
+.five .content-container {
+  left: 200px;
+  bottom: var(--gap);
+  text-align: left;
+  color: rgb(255, 0, 221);
+}
+
+
+/* الخطوط  */
+
+
+/* الخطوط الي بتتجه لتحت */
+
+.one .line {
+  position: absolute;
+  width: 2px;
+  height: 170px;
+  background-color: var(--color-1);
+  top: -150px;
+  left: -30px;
+}
+
+.one .line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 35px;
+  height: 2px;
+  background: var(--color-1);
+}
+
+.one .line::after,
+.two .line::after,
+.five .line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 2px;
+}
+
+.one .line::after {
+  background: var(--color-1);
+}
+
+.two .line::after {
+  background: var(--color-2);
+}
+
+.five .line::after {
+  background: var(--color-5);
+}
+
+.two .line {
+  position: absolute;
+  width: 2px;
+  height: 90px;
+  background-color: var(--color-2);
+  top: -70px;
+  left: -30px;
+}
+
+.five .line {
+  position: absolute;
+  width: 2px;
+  height: 182px;
+  background-color: var(--color-5);
+  top: -160px;
+  left: -30px;
+}
+
+
+/* الخطوط الي بتتجه لفوق */
+
+.three .line {
+  position: absolute;
+  width: 2px;
+  height: 327px;
+  background-color: var(--color-3);
+  bottom: -100px;
+  right: -30px;
+}
+
+.three .line::after,
+.four .line::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 2px;
+}
+
+.three .line::after {
+  background: var(--color-3);
+}
+
+.four .line::after {
+  background: var(--color-4);
+}
+
+.four .line {
+  position: absolute;
+  width: 2px;
+  height: 357px;
+  background-color: var(--color-4);
+  bottom: -100px;
+  right: -30px;
+}
+
+.four .line::before {
+  content: '';
+  position: absolute;
+  right: 0px;
+  bottom: 0;
+  width: 20px;
+  height: 2px;
+  background: var(--color-4);
+}
+
+
+/* النقط الي طايره */
+
+.one .dot {
+  position: absolute;
+  top: 110px;
+  right: -30px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-1);
+  border-radius: 50%;
+  box-shadow: -20px -110px 0 6px var(--color-1), -30px 80px 0 4px var(--color-1);
+}
+
+.four .dot {
+  position: absolute;
+  top: 130px;
+  left: 0px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-4);
+  border-radius: 50%;
+  box-shadow: -22px -138px 0 10px var(--color-4), -70px 70px 0 0px var(--color-4);
+}
+
+
+/* الوان الدواير المفرغه اقدر الون الفراغ دا بزي شادو  */
+
+.one {
+  box-shadow: inset 0 0 0 20px var(--color-1), inset 0px 0px 12px 20px #ff0000;
+}
+
+
+/* الدايره المصمطه */
+
+.two {
+  background-color: var(--color-2);
+  transform: translateX(-20px);
+}
+
+.three {
+  box-shadow: inset 0 0 0 20px var(--color-3), inset 0px 0px 12px 20px #00ff08;
+  transform: translateX(10px);
+}
+
+
+/* الدايره المصمطه */
+
+.four {
+  background-color: var(--color-4);
+  transform: translateX(-20px);
+}
+
+.five {
+  box-shadow: inset 0 0 0 20px var(--color-5), inset 0px 0px 12px 20px #f700ff;
+  transform: translateX(10px);
+}
+
+
+/* الخطين الزينه الي بيبقو فوق وتحت عنوان العنصر */
+
+.one .content-container h2 {
+  border-top: 2px solid var(--color-1);
+  border-bottom: 2px solid var(--color-1);
+}
+
+.two .content-container h2 {
+  border-top: 2px solid var(--color-2);
+  border-bottom: 2px solid var(--color-2);
+}
+
+.three .content-container h2 {
+  border-top: 2px solid var(--color-3);
+  border-bottom: 2px solid var(--color-3);
+}
+
+.four .content-container h2 {
+  border-top: 2px solid var(--color-4);
+  border-bottom: 2px solid var(--color-4);
+}
+
+.five .content-container h2 {
+  border-top: 2px solid var(--color-5);
+  border-bottom: 2px solid var(--color-5);
+}
+
+
+/* لتنعيم الحواف الزاويه */
+
+.one .content-container h2::before,
+.one .content-container h2::after {
+  background: var(--color-1);
+}
+
+.two .content-container h2::before,
+.two .content-container h2::after {
+  background: var(--color-2);
+}
+
+.five .content-container h2::before,
+.five .content-container h2::after {
+  background: var(--color-5);
+}
+
+.three .content-container h2::before,
+.three .content-container h2::after {
+  background: var(--color-3);
+}
+
+.four .content-container h2::before,
+.four .content-container h2::after {
+  background: var(--color-4);
+}
+
+
+/* الوسائط */
+
+
+.catogory {
+  max-width: 1150px;
+  margin: 85px auto 20px auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.catogory button {
+  padding: 5px 10px;
+  background-color: #05166e;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.catogory button:hover {
+  background-color: #05166e;
+}
+
+/* صفحه السله */
+.cart_user {
+  margin-top: 85px;
+  max-width: 1150px;
+  padding: 1rem;
+  margin: 80px auto 0 auto;
+}
+
+.cart_user table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart_user table th,
+.cart_user table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart_user table th {
+  background-color: #f2f2f2;
+}
+
+.cart_user table img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.cart_user table button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.cart_user table button:hover {
+  background-color: #45a049;
+}
+
+/* صفحه السله */
+
+/* عشان لما اكبر واغير في حجم المتصفح تتحرك بس يفضلو متناسقين */
+
+@media (max-width: 992px) {
+  .graphic-container {
+    margin: 50px 0;
+  }
+
+  .center-circles-container {
+    overflow: hidden;
+    overflow-x: scroll;
+    width: 1300px;
+  }
+
+  .double {
+    flex-direction: row;
+  }
+
+  .double:nth-child(even) {
+    flex-direction: row;
+  }
+
+  .two {
+    transform: translateX(0px);
+  }
+
+  .three {
+    transform: translateX(0px);
+  }
+
+  .four {
+    transform: translateX(0px);
+  }
+
+  .five {
+    transform: translateX(0px);
+  }
+}
+
+/* نهاية سعيد ومحمد علي */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Start Medai */
+
+@media(max-width:1000px) {
+  .pro2 {
+    width: 45%;
+  }
+}
+
+@media(max-width:750px) {
+  .pro2 {
+    width: 100%;
+  }
+
+  #en {
+    position: absolute;
+    left: 45%;
+  }
+
+  .contactt .content {
+
+    width: 80%;
+    margin-left: 50px;
+
+  }
+}
+
+@media (max-width: 950px) {
+  .navbar :is(.hamburger-btn, .close-btn) {
+    display: block;
+  }
+
+  .navbar {
+    padding: 15px 0;
+  }
+
+  .navbar .logo img {
+    display: none;
+  }
+
+  .navbar .logo h2 {
+    font-size: 1.4rem;
+  }
+
+
+  .navbar .links {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    left: -100%;
+    display: block;
+    height: 100vh;
+    width: 100%;
+    padding-top: 60px;
+    text-align: center;
+    background: #fff;
+    transition: 0.2s ease;
+  }
+
+  .navbar .links.show-menu {
+    left: 0;
+  }
+
+  .navbar .links a {
+    display: inline-flex;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #000;
+  }
+
+  .navbar .links a:hover {
+    color: #00BCD4;
+  }
+
+
+}

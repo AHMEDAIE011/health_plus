@@ -1,0 +1,134 @@
+======================== ربط الداتا  ===================================
+$dsn = 'mysql:host=localhost;dbname=health_plus';
+$user = 'root';
+$pass = '';
+$option = array(
+    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+);
+
+try {
+    $con = new PDO($dsn, $user, $pass, $option);
+    $con->setATTribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+    echo 'لم يتم الاتصال' . $e->getMessage();
+}
+
+
+=========================================================================
+======================== Signup front ===================================
+
+            <form action="#" method="POST">
+                <h2>Signup</h2>
+
+                <div class="input_box">
+                    <input type="text" name="username" placeholder="Enter your username" required />
+                    <i class="uil uil-envelope-alt email"></i>
+                </div>
+                <div class="input_box">
+                    <input type="email" name="email" placeholder="Enter your email" required />
+                    <i class="uil uil-envelope-alt email"></i>
+                </div>
+                <div class="input_box">
+                    <input type="password" name="password" placeholder="Create password" required />
+                    <i class="uil uil-lock password"></i>
+                    <i class="uil uil-eye-slash pw_hide"></i>
+                </div>
+                <div class="input_box">
+                    <input type="password" name="password2" placeholder="Confirm password" required />
+                    <i class="uil uil-lock password"></i>
+                    <i class="uil uil-eye-slash pw_hide"></i>
+                </div>
+
+                <button type="submit" name="Signup" class="button">Signup Now</button>
+
+                <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+            </form>
+
+========================================================================
+======================== Signup back ===================================
+if (isset($_POST['Signup'])) {
+    $name = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+
+    $errore = [];
+
+    if (empty($name)) {
+        $errore[] = 'Name is required';
+    }
+    if ($password != $password2) {
+        $errore[] = 'كلمه السر غير مطابقه';
+    }
+
+    if (!empty($errore)) {
+    } else {
+        $add = insertdatatotabul(
+            'users',
+            'name,email,password',
+            ':name,:email,:pass',
+            [
+                'name' => $name,
+                'email' => $email,
+                'pass' => $password,
+            ]
+        );
+    }
+}
+========================================================================
+======================== login front ===================================
+        <!-- Login From -->
+        <div class="form login_form">
+            <form action="#" method="POST">
+                <h2>Login</h2>
+
+                <div class="input_box">
+                    <input type="email" name="email" placeholder="Enter your email" required />
+                    <i class="uil uil-envelope-alt email"></i>
+                </div>
+                <div class="input_box">
+                    <input type="password" name="password" placeholder="Enter your password" required />
+                    <i class="uil uil-lock password"></i>
+                    <i class="uil uil-eye-slash pw_hide"></i>
+                </div>
+
+                <div class="option_field">
+                    <span class="checkbox">
+                        <input type="checkbox" id="check" />
+                        <label for="check">Remember me</label>
+                    </span>
+                    <a href="Forgot-password.html" class="forgot_pw">Forgot password?</a>
+                </div>
+
+                <button class="button" type="submit" name="Log_In">Login Now</button>
+
+                <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+            </form>
+        </div>
+========================================================================================
+========================================= login back ===================================
+if (isset($_POST['Log_In'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $stmt = $con->prepare('SELECT * FROM users WHERE email = ?  AND password = ?');
+    $stmt->execute([$email, $password]);
+    $getuid = $stmt->fetch();
+
+    if ($getuid) {
+        $_SESSION['clint'] = $getuid['email'];
+        $_SESSION['clintid'] = $getuid['id'];
+        $_SESSION['name'] = $getuid['name'];
+
+        ?>
+        <script>
+            setTimeout(function () {
+                setTimeout("location.href = 'index.php'", 500);
+            }, 500);
+        </script>
+        <?php
+    }
+}
+
+

@@ -1,0 +1,43 @@
+*{
+    background-color: #001;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    text-align:center;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    color: aqua;
+}
+
+main {
+    padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 19px;
+    margin-right: -16px;
+}
+
+th, td {
+    border: 1px solid #002966;
+    padding: 50px;
+    text-align: center;
+    background-color: rgb(0, 0, 41);
+    color: #ddd;
+}
+
+th {
+    background-color: #00007f ;
+    font-size: 20px;
+}
+
+
+

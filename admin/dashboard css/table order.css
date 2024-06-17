@@ -1,0 +1,76 @@
+*{
+    background-color: #001;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    text-align:right;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    color: aqua;
+}
+
+main {
+    padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 19px;
+    margin-right: -16px;
+}
+
+th, td {
+    border: 1px solid #002966;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(0, 0, 41);
+    color: #ddd;
+}
+
+th {
+    background-color: #00007f ;
+    font-size: 20px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+button{
+    position: relative;
+    left: 30px;
+    border-radius: 10px;
+
+}
+.edit ,.del{
+    cursor: pointer;
+    color:white;
+    padding: 5px;
+    width: 100%;
+    font-size: 17px;
+
+}
+.del{
+    background-color: green;
+}
+.edit{
+    background-color:red;
+}
+
+.edit_del{
+    width: 120px;
+}
+button ,.edit_del ,i{
+    margin-right: 30px; 
+    margin-top: 5px;
+    margin-left: 10px;
+    border: none;
+}
+
